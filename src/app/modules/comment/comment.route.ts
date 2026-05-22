@@ -1,0 +1,13 @@
+import { Router } from 'express';
+import { CommentController } from './comment.controller';
+import authGurd from '../../middlewares/authGurd';
+
+const router = Router();
+
+router.post('/', authGurd, CommentController.createComment);
+router.get('/', CommentController.getComments);
+router.get('/:id', CommentController.getCommentById);
+router.patch('/:id', authGurd, CommentController.updateComment);
+router.delete('/:id', authGurd, CommentController.deleteComment);
+
+export const commentRouter = router;
